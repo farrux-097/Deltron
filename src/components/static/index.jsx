@@ -1,0 +1,1 @@
+export const UlItems = ["Home", "Shop", "About","contact"];
