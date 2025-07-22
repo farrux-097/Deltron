@@ -3,7 +3,7 @@ import Hero from "../../components/hero/Hero";
 import HomeType from "../../components/home-type/HomeType";
 import Products from "../../components/products/Products";
 import { useFetch } from "../../hooks/useFetch";
-import Skeleton from "../../components/products/skeleton.jsx";
+import Skeleton from "../../components/products/Skeleton.jsx";
 
 const Home = () => {
   const { data, error, loading } = useFetch("/products", {
