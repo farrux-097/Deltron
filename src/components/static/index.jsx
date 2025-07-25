@@ -1,1 +1,1 @@
-export const UlItems = ["Home", "Shop", "About","contact"];
+// export const UlItems = ["Home", "Shop", "About","contact"];
