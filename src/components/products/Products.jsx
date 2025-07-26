@@ -22,11 +22,11 @@ const Products = ({ data, showMoreButton = true, title = "Our Products" }) => {
             key={product.id}
             className="relative bg-[#F4F5F7] group transition-all duration-300 ease-in-out"
           >
-            {/* ✅ TUZATILGAN QISM */}
+        
             <img
               alt={product.title}
               className="h-[301px] object-contain cursor-pointer p-5 hover:p-0 max-w-[285px] hover:max-w-[325px] transition-all duration-300 mx-auto"
-              onClick={() => navigate(`/detailproduct/${product.id}`)}
+              onClick={() => navigate(`/product/${product.id}`)}
               src={product.thumbnail}
             />
 
