@@ -8,9 +8,7 @@ import { useCart } from "../../zustand/useCart";
 const Products = ({ data }) => {
   const navigate = useNavigate();
   const { toggleWishlist, wishlist } = useStore();
-  const { add,cart } = useCart();
-  console.log(wishlist);
-console.log(cart);
+  const { add } = useCart();
   return (
     <div className="max-w-[1236px] w-full px-4 m-auto mt-[57px] flex flex-col items-center">
       <h1 className="text-[32px] sm:text-[40px] text-[#3A3A3A]">
@@ -35,15 +33,18 @@ console.log(cart);
             </div>
             <div className="w-[48px] h-[70px] absolute top-[24px] right-[-24px] group-hover:translate-x-[-30px] opacity-0 group-hover:opacity-100 duration-300  flex items-center justify-center">
               <div className="flex flex-col">
-                <button className="size-[30px]" onClick={() => toggleWishlist(product)}>
+                <button
+                  className="size-[30px]"
+                  onClick={() => toggleWishlist(product)}
+                >
                   {wishlist.some((item) => item.id === product.id) ? (
-                    <FaHeart size="25px"/>
+                    <FaHeart size="25px" />
                   ) : (
-                    <FaRegHeart size="25px"/>
+                    <FaRegHeart size="25px" />
                   )}
                 </button>
                 <button onClick={() => add(product)}>
-                  <LuShoppingCart size="25px"/>
+                  <LuShoppingCart size="25px" />
                 </button>
               </div>
             </div>
