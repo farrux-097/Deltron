@@ -5,59 +5,70 @@ import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { useCart } from "../../zustand/useCart";
 
-const Products = ({ data }) => {
+const Products = ({ data, showMoreButton = true, title = "Our Products" }) => {
   const navigate = useNavigate();
   const { toggleWishlist, wishlist } = useStore();
-  const { add,cart } = useCart();
-  console.log(wishlist);
-console.log(cart);
+  const { add } = useCart();
+
+  const isInWishlist = (id) => wishlist.some((item) => item.id === id);
+  const handleNavigate = (id) => navigate(`/product/${id}`);
+
   return (
-    <div className="max-w-[1236px] w-full px-4 m-auto mt-[57px] flex flex-col items-center">
-      <h1 className="text-[32px] sm:text-[40px] text-[#3A3A3A]">
-        Our Products
+    <div className="max-w-[1236px] w-full px-4 mx-auto mt-[57px] flex flex-col items-center">
+      <h1 className="text-[32px] sm:text-[40px] text-[#3A3A3A] font-semibold">
+        {title}
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[24px] mt-[32px] w-full">
         {data?.products.map((product) => (
           <div
             key={product.id}
-            className="relative bg-[#F4F5F7] group transition duration-300"
+            className="relative bg-[#F4F5F7] group transition-all duration-300 ease-in-out"
           >
             <img
               alt={product.title}
-              className="h-[301px] object-contain cursor-pointer p-5 hover:p-0 w-max-[285px] hover:w-[325px] "
-              onClick={() => navigate(`/product/${product.id}`)}
+              className="h-[301px] object-contain cursor-pointer p-5 hover:p-0 max-w-[285px] hover:max-w-[325px] transition-all duration-300 mx-auto"
+              onClick={() => handleNavigate(product.id)}
               src={product.thumbnail}
             />
 
-            <div className="w-[48px] h-[48px] rounded-full bg-[#E97171] absolute top-[24px] right-[24px] group-hover:translate-x-[72px] group-hover:opacity-0 duration-300  flex items-center justify-center">
-              <p className="text-[16px] text-white">-50%</p>
+            <div className="w-[48px] h-[48px] rounded-full bg-[#E97171] absolute top-[24px] right-[24px] group-hover:translate-x-[72px] group-hover:opacity-0 duration-300 flex items-center justify-center">
+              <p className="text-[16px] text-white font-medium">-50%</p>
             </div>
-            <div className="w-[48px] h-[70px] absolute top-[24px] right-[-24px] group-hover:translate-x-[-30px] opacity-0 group-hover:opacity-100 duration-300  flex items-center justify-center">
-              <div className="flex flex-col">
-                <button className="size-[30px]" onClick={() => toggleWishlist(product)}>
-                  {wishlist.some((item) => item.id === product.id) ? (
-                    <FaHeart size="25px"/>
+
+            <div className="w-[48px] h-[70px] absolute top-[24px] right-[-24px] group-hover:translate-x-[-30px] opacity-0 group-hover:opacity-100 duration-300 flex items-center justify-center">
+              <div className="flex flex-col space-y-2">
+                <button
+                  className="size-[30px] text-red-500"
+                  onClick={() => toggleWishlist(product)}
+                >
+                  {isInWishlist(product.id) ? (
+                    <FaHeart size={25} />
                   ) : (
-                    <FaRegHeart size="25px"/>
+                    <FaRegHeart size={25} />
                   )}
                 </button>
-                <button onClick={() => add(product)}>
-                  <LuShoppingCart size="25px"/>
+                <button
+                  className="text-[#3A3A3A]"
+                  onClick={() => add(product)}
+                >
+                  <LuShoppingCart size={25} />
                 </button>
               </div>
             </div>
 
             <div className="p-[16px]">
-              <h3 className="text-[20px] font-semibold">{product.title}</h3>
-              <p className="text-[14px] text-[#898989] font-semibold">
-                Brand : {product.brand}
+              <h3 className="text-[20px] font-semibold text-[#3A3A3A]">
+                {product.title}
+              </h3>
+              <p className="text-[14px] text-[#898989] font-medium">
+                Brand: {product.brand}
               </p>
               <div className="flex justify-between items-center mt-2">
-                <strong className="text-[18px] font-semibold">
+                <strong className="text-[18px] font-semibold text-[#3A3A3A]">
                   {product.price} USD
                 </strong>
-                <strong className="text-[14px] text-[#B0B0B0] line-through font-semibold">
+                <strong className="text-[14px] text-[#B0B0B0] line-through font-medium">
                   {product.price * 2} USD
                 </strong>
               </div>
@@ -66,9 +77,11 @@ console.log(cart);
         ))}
       </div>
 
-      <button className="w-[200px] sm:w-[245px] border p-[12px] text-[12px] mt-[32px] mb-[68px] font-semibold text-[#B88E2F]">
-        Show More
-      </button>
+      {showMoreButton && (
+        <button className="w-[200px] sm:w-[245px] border p-[12px] text-[12px] mt-[32px] mb-[68px] font-semibold text-[#B88E2F] hover:bg-[#f9f1e7] transition">
+          Show More
+        </button>
+      )}
     </div>
   );
 };
