@@ -1,9 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useStore } from "../../zustand/useStore";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { LuShoppingCart } from "react-icons/lu";
+import { useCart } from "../../zustand/useCart";
 
 const Products = ({ data }) => {
   const navigate = useNavigate();
-
+  const { toggleWishlist, wishlist } = useStore();
+  const { add,cart } = useCart();
+  console.log(wishlist);
+console.log(cart);
   return (
     <div className="max-w-[1236px] w-full px-4 m-auto mt-[57px] flex flex-col items-center">
       <h1 className="text-[32px] sm:text-[40px] text-[#3A3A3A]">
@@ -14,17 +21,33 @@ const Products = ({ data }) => {
         {data?.products.map((product) => (
           <div
             key={product.id}
-            className="relative bg-[#F4F5F7] hover:bg-[#3A3A3A] hover:opacity-[28%] transition duration-300"
+            className="relative bg-[#F4F5F7] group transition duration-300"
           >
             <img
               alt={product.title}
-              className="h-[301px] object-contain w-full cursor-pointer"
+              className="h-[301px] object-contain cursor-pointer p-5 hover:p-0 w-max-[285px] hover:w-[325px] "
               onClick={() => navigate(`/product/${product.id}`)}
               src={product.thumbnail}
             />
-            <div className="w-[48px] h-[48px] rounded-full bg-[#E97171] absolute top-[24px] right-[24px] flex items-center justify-center">
+
+            <div className="w-[48px] h-[48px] rounded-full bg-[#E97171] absolute top-[24px] right-[24px] group-hover:translate-x-[72px] group-hover:opacity-0 duration-300  flex items-center justify-center">
               <p className="text-[16px] text-white">-50%</p>
             </div>
+            <div className="w-[48px] h-[70px] absolute top-[24px] right-[-24px] group-hover:translate-x-[-30px] opacity-0 group-hover:opacity-100 duration-300  flex items-center justify-center">
+              <div className="flex flex-col">
+                <button className="size-[30px]" onClick={() => toggleWishlist(product)}>
+                  {wishlist.some((item) => item.id === product.id) ? (
+                    <FaHeart size="25px"/>
+                  ) : (
+                    <FaRegHeart size="25px"/>
+                  )}
+                </button>
+                <button onClick={() => add(product)}>
+                  <LuShoppingCart size="25px"/>
+                </button>
+              </div>
+            </div>
+
             <div className="p-[16px]">
               <h3 className="text-[20px] font-semibold">{product.title}</h3>
               <p className="text-[14px] text-[#898989] font-semibold">
