@@ -1,5 +1,9 @@
 import { create } from "zustand";
 
+const saveStorage = (store) => {
+  localStorage.setItem("cart", JSON.stringify(store));
+};
+
 export const useCart = create((set) => ({
   cart: JSON.parse(localStorage.getItem("cart")) || [],
 
@@ -10,14 +14,14 @@ export const useCart = create((set) => ({
         return { cart: state.cart };
       } else {
         let store = [...state.cart, { ...payload, quantity: 1 }];
-        localStorage.setItem("cart", JSON.stringify(store));
+        saveStorage(store);
         return { cart: store };
       }
     }),
   remove: (payload) =>
     set((state) => {
       let store = state.cart.filter((item) => item.id !== payload.id);
-      localStorage.setItem("cart", JSON.stringify(store));
+      saveStorage(store);
       return { cart: store };
     }),
   increment: (payload) =>
@@ -25,7 +29,7 @@ export const useCart = create((set) => ({
       let store = state.cart.map((item) =>
         item.id === payload.id ? { ...item, quantity: item.quantity + 1 } : item
       );
-      localStorage.setItem("cart", JSON.stringify(store));
+      saveStorage(store);
       return { cart: store };
     }),
   decrement: (payload) =>
@@ -33,7 +37,7 @@ export const useCart = create((set) => ({
       let store = state.cart.map((item) =>
         item.id === payload.id ? { ...item, quantity: item.quantity - 1 } : item
       );
-      localStorage.setItem("cart", JSON.stringify(store));
+      saveStorage(store);
       return { cart: store };
     }),
 }));
