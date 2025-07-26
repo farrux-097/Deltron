@@ -1,8 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import Logo from "../../assets/logo.svg";
-import { FaRegUser, FaRegHeart } from "react-icons/fa";
-import { IoHomeOutline, IoMenu, IoClose } from "react-icons/io5";
-import { GoSearch } from "react-icons/go";
+import { FiUser } from "react-icons/fi";
+import { IoHomeOutline, IoMenu, IoClose, IoHeartOutline, IoSearchOutline } from "react-icons/io5";
 import { SlBasket } from "react-icons/sl";
 import { NavLink } from 'react-router-dom';
 
@@ -35,10 +34,10 @@ const Header = () => {
         {/* Desktop Menu */}
         <ul className={`hidden sm:flex gap-10`}>
           {['/', '/shop', '/about', '/contact'].map((path, i) => (
-            <li key={i} className="text-[16px] font-medium text-[#000000] hover:animate-pulse">
+            <li key={i} className="text-[16px] font-medium hover:animate-pulse">
               <NavLink
                 to={path}
-                className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`}
+                className={({ isActive }) => `${isActive ? 'text-yellow-500' : 'text-black'}`}
               >
                 {path === '/' ? 'Home' : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
               </NavLink>
@@ -69,13 +68,13 @@ const Header = () => {
             <IoHomeOutline className="w-[24px] h-[24px]" />
           </NavLink>
           <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} to="/user">
-            <FaRegUser className="w-[24px] h-[24px]" />
+            <FiUser  className="w-[24px] h-[24px]" />
           </NavLink>
           <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} to="/search">
-            <GoSearch className="w-[24px] h-[24px]" />
+            <IoSearchOutline className="w-[24px] h-[24px]" />
           </NavLink>
           <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} to="/wishlist">
-            <FaRegHeart className="w-[24px] h-[24px]" />
+            <IoHeartOutline className="w-[24px] h-[24px]" />
           </NavLink>
           <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} to="/cart">
             <SlBasket className="w-[24px] h-[24px]" />
@@ -95,4 +94,3 @@ const Header = () => {
 };
 
 export default memo(Header);
-
