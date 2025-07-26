@@ -8,9 +8,8 @@ import { useCart } from "../../zustand/useCart";
 const Products = ({ data, showMoreButton = true, title = "Our Products" }) => {
   const navigate = useNavigate();
   const { toggleWishlist, wishlist } = useStore();
-  const { add,cart } = useCart();
-  console.log(wishlist);
-console.log(cart);
+  const { add } = useCart();
+
   return (
     <div className="max-w-[1236px] w-full px-4 mx-auto mt-[57px] flex flex-col items-center">
       <h1 className="text-[32px] sm:text-[40px] text-[#3A3A3A] font-semibold">
@@ -30,22 +29,23 @@ console.log(cart);
               src={product.thumbnail}
             />
 
-            <div className="w-[48px] h-[48px] rounded-full bg-[#E97171] absolute top-[24px] right-[24px] group-hover:translate-x-[72px] group-hover:opacity-0 duration-300 flex items-center justify-center">
+            <div className="w-[48px] h-[48px] rounded-full bg-[#E97171] absolute top-[24px] right-[24px] md:group-hover:translate-x-[72px] md:group-hover:opacity-0 duration-300 flex items-center justify-center">
               <p className="text-[16px] text-white font-medium">-50%</p>
             </div>
-            <div className="w-[48px] h-[70px] absolute top-[24px] right-[-24px] group-hover:translate-x-[-30px] opacity-0 group-hover:opacity-100 duration-300  flex items-center justify-center">
-              <div className="flex flex-col">
-                <button className="size-[30px]" onClick={() => toggleWishlist(product)}>
-                  {wishlist.some((item) => item.id === product.id) ? (
-                    <FaHeart size="25px"/>
-                  ) : (
-                    <FaRegHeart size="25px"/>
-                  )}
-                </button>
-                <button onClick={() => add(product)}>
-                  <LuShoppingCart size="25px"/>
-                </button>
-              </div>
+            <div className="w-[48px] h-[70px] top-[84px] right-[12px] absolute md:top-[24px] md:right-[-24px]  md:group-hover:translate-x-[-30px] opacity-100 md:opacity-0 md:group-hover:opacity-100 duration-300">
+              <button
+                className="size-[30px] "
+                onClick={() => toggleWishlist(product)}
+              >
+                {wishlist.some((item) => item.id === product.id) ? (
+                  <FaHeart size="25px" />
+                ) : (
+                  <FaRegHeart size="25px" />
+                )}
+              </button>
+              <button onClick={() => add(product)}>
+                <LuShoppingCart size="25px" />
+              </button>
             </div>
 
             <div className="p-[16px]">

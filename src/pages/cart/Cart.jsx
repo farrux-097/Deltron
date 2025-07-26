@@ -1,6 +1,5 @@
 import React from "react";
 import { useCart } from "../../zustand/useCart";
-import Products from "../../components/products/Products";
 import { FaTrash } from "react-icons/fa";
 
 const Cart = () => {
@@ -11,62 +10,71 @@ const Cart = () => {
   );
 
   return (
-    <div className="">
-      <div className="mt-[72px] flex justify-center gap-[30px]">
-        <div className="w-[817px]">
-          <ul className="h-[55px] flex items-center pl-[142px] bg-[#F9F1E7] w-full">
-            <li>Product</li>
-            <li className="ml-[119px]">Price</li>
-            <li className="ml-[107px]">Quantity</li>
-            <li className="ml-[46px] w-full">Subtotal</li>
+    <div className="p-4 mt-20">
+      <div className="flex flex-col lg:flex-row gap-8 justify-center">
+        <div className="w-full lg:w-[817px]">
+          <ul className="hidden lg:flex h-[55px] items-center pl-10 bg-[#F9F1E7] w-full text-sm font-medium text-gray-700">
+            <li className="w-1/3">Product</li>
+            <li className="w-1/6">Price</li>
+            <li className="w-1/6">Quantity</li>
+            <li className="w-1/4">Subtotal</li>
           </ul>
+
           {cart?.map((product) => (
             <div
               key={product.id}
-              className="flex items-center mt-[55px] mb-[55px] "
+              className="flex flex-col lg:flex-row items-center gap-4 mt-10 border-b pb-6"
             >
               <img
                 src={product.thumbnail}
-                className="size-[108px]  bg-[#F9F1E7] rounded-xl"
-                alt=""
+                className="w-[108px] h-[108px] bg-[#F9F1E7] rounded-xl object-cover"
+                alt={product.title}
               />
-              <div className="flex items-center w-full pl-[34px]">
-                <p className="w-[177px] text-[#9F9F9F]">{product.title}</p>
-                <p className="w-[117px] text-[#9F9F9F]">{product.price} USD</p>
-                <div className="w-[100px] border px-[10px] h-[42px] items-center py-[5px] rounded-xl flex justify-between">
+
+              <div className="flex flex-col lg:flex-row items-center w-full gap-4 lg:pl-4">
+                <p className="w-full lg:w-[177px] text-[#9F9F9F] text-center lg:text-left">
+                  {product.title}
+                </p>
+                <p className="w-full lg:w-[117px] text-[#9F9F9F] text-center lg:text-left">
+                  {product.price} USD
+                </p>
+
+                <div className="w-[100px] border px-2 h-[42px] rounded-xl flex justify-between items-center">
                   <button
                     disabled={product.quantity <= 1}
                     onClick={() => decrement(product)}
-                    className="text-[40px] pb-[5px] disabled:text-gray-300"
+                    className="text-2xl disabled:text-gray-300"
                   >
                     -
                   </button>
-                  <span className="p-2">{product.quantity}</span>
+                  <span className="p-1">{product.quantity}</span>
                   <button
                     onClick={() => increment(product)}
-                    className="text-[30px] pb-[5px]"
+                    className="text-xl"
                   >
                     +
                   </button>
                 </div>
-                <p className="pl-[30px] w-[170px]">
+
+                <p className="w-full lg:w-[170px] text-center lg:text-left">
                   {(product.quantity * product.price).toFixed(2)} USD
                 </p>
-                <button className="text-[25px]" onClick={() => remove(product)}>
+
+                <button onClick={() => remove(product)} className="text-2xl text-red-600">
                   <FaTrash />
                 </button>
               </div>
             </div>
           ))}
         </div>
-        <div className="bg-[#F9F1E7] w-[393px] h-[390px] pt-[60px] text-center font-semibold mb-[63px]">
-          <h2 className="text-[32px]">Cart Totals</h2>
-          <p className="mt-[60px] line-through">
-            Total :{" "}
-            <span className="text-red-700">{totalPrice.toFixed(2)}</span>
+
+        <div className="bg-[#F9F1E7] w-full lg:w-[393px] h-auto py-10 px-6 text-center font-semibold rounded-xl">
+          <h2 className="text-2xl md:text-3xl mb-6">Cart Totals</h2>
+          <p className="line-through text-red-700 text-lg">
+            Total: {totalPrice.toFixed(2)} USD
           </p>
-          <h1 className="text-2xl">Total sale : {totalPrice.toFixed(2) / 2}</h1>
-          <button className="mt-[42px] px-[59px] py-[15px] text-[20px] border rounded-xl hover:bg-amber-500 hover:border-white hover:text-white">
+          <h1 className="text-xl mt-4">Total Sale: {(totalPrice / 2).toFixed(2)} USD</h1>
+          <button className="mt-8 px-8 py-3 text-lg border rounded-xl hover:bg-amber-500 hover:border-white hover:text-white transition">
             Check Out
           </button>
         </div>
@@ -74,5 +82,4 @@ const Cart = () => {
     </div>
   );
 };
-
 export default Cart;
