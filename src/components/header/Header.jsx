@@ -25,11 +25,13 @@ const Header = () => {
         }`}
       >
         {/* Logo */}
+        <NavLink to='/'  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
         <img
           src={Logo}
           alt="site logo"
           className={`w-[120px] transition-all duration-300 ${isScroll ? 'scale-95' : 'scale-100'}`}
         />
+        </NavLink>
 
         {/* Desktop Menu */}
         <ul className={`hidden sm:flex gap-10`}>
@@ -64,19 +66,19 @@ const Header = () => {
 
         {/* Icons */}
         <div className="flex gap-[30px] sm:gap-[45px] items-center sm:static max-sm:fixed max-sm:bottom-0 max-sm:left-0 max-sm:w-full max-sm:justify-evenly max-sm:bg-white max-sm:py-3 max-sm:border-t max-sm:border-gray-300 z-50">
-          <NavLink className={({ isActive }) => `sm:hidden ${isActive ? 'text-yellow-500' : ''}`} to="/">
+          <NavLink className={({ isActive }) => `sm:hidden ${isActive ? 'text-yellow-500' : ''}`}  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} to="/">
             <IoHomeOutline className="w-[24px] h-[24px]" />
           </NavLink>
-          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} to="/user">
+          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`}  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} to="/user">
             <FiUser  className="w-[24px] h-[24px]" />
           </NavLink>
-          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} to="/search">
+          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} to="/search">
             <IoSearchOutline className="w-[24px] h-[24px]" />
           </NavLink>
-          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} to="/wishlist">
-            <IoHeartOutline className="w-[24px] h-[24px]" />
+          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} to="/wishlist">
+            <IoHeartOutline className="w-[24px] h-[24px]"  />
           </NavLink>
-          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} to="/cart">
+          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}  to="/cart">
             <SlBasket className="w-[24px] h-[24px]" />
           </NavLink>
         </div>
