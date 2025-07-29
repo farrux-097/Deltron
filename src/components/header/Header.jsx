@@ -35,7 +35,7 @@ const Header = () => {
 
         {/* Desktop Menu */}
         <ul className={`hidden sm:flex gap-10`}>
-          {['/', '/shop', '/about', '/contact'].map((path, i) => (
+          {['/', '/shop', '/blog', '/contact'].map((path, i) => (
             <li key={i} className="text-[16px] font-medium hover:animate-pulse">
               <NavLink
                 to={path}
@@ -51,7 +51,7 @@ const Header = () => {
         <ul className={`sm:hidden absolute top-full left-0 w-full bg-yellow-500 flex flex-col items-start px-4 transition-all duration-300 overflow-hidden z-40 border-b border-gray-200 ${
           toggle ? 'h-[160px] py-3' : 'h-0 py-0'
         }`}>
-          {['/', '/shop', '/about', '/contact'].map((path, i) => (
+          {['/', '/shop', '/blog', '/contact'].map((path, i) => (
             <li key={i} className="text-[16px] font-medium text-black hover:animate-pulse w-full">
               <NavLink
                 to={path}
