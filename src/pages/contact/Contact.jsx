@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IoLocationSharp, IoTime } from "react-icons/io5";
 import { FaPhoneAlt } from "react-icons/fa";
+import { chekOut } from "../contact/Telegram";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -14,9 +15,24 @@ export default function ContactForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
+    const sms = `
+    <b>Furniro:</b>
+    <b>Ism:</b> ${formData.name}
+    <b>Email:</b> ${formData.email}
+    <b>Subyekt:</b> ${formData.subject || "Yo'q"}
+    <b>Xabar:</b> ${formData.message}
+    `;
+    await chekOut(sms); 
+    alert(" Xabaringiz yuborildi!");
+  
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
   };
 
   return (
@@ -125,4 +141,4 @@ export default function ContactForm() {
       </div>
     </section>
   );
-}
+}  

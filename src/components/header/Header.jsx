@@ -1,8 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import Logo from "../../assets/logo.svg";
-import { FaRegUser, FaRegHeart } from "react-icons/fa";
-import { IoHomeOutline, IoMenu, IoClose } from "react-icons/io5";
-import { GoSearch } from "react-icons/go";
+import { FiUser } from "react-icons/fi";
+import { IoHomeOutline, IoMenu, IoClose, IoHeartOutline, IoSearchOutline } from "react-icons/io5";
 import { SlBasket } from "react-icons/sl";
 import { NavLink } from 'react-router-dom';
 
@@ -26,19 +25,21 @@ const Header = () => {
         }`}
       >
         {/* Logo */}
+        <NavLink to='/'  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
         <img
           src={Logo}
           alt="site logo"
           className={`w-[120px] transition-all duration-300 ${isScroll ? 'scale-95' : 'scale-100'}`}
         />
+        </NavLink>
 
         {/* Desktop Menu */}
         <ul className={`hidden sm:flex gap-10`}>
-          {['/', '/shop', '/about', '/contact'].map((path, i) => (
-            <li key={i} className="text-[16px] font-medium text-[#000000] hover:animate-pulse">
+          {['/', '/shop', '/blog', '/contact'].map((path, i) => (
+            <li key={i} className="text-[16px] font-medium hover:animate-pulse">
               <NavLink
                 to={path}
-                className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`}
+                className={({ isActive }) => `${isActive ? 'text-yellow-500' : 'text-black'}`}
               >
                 {path === '/' ? 'Home' : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
               </NavLink>
@@ -50,7 +51,7 @@ const Header = () => {
         <ul className={`sm:hidden absolute top-full left-0 w-full bg-yellow-500 flex flex-col items-start px-4 transition-all duration-300 overflow-hidden z-40 border-b border-gray-200 ${
           toggle ? 'h-[160px] py-3' : 'h-0 py-0'
         }`}>
-          {['/', '/shop', '/about', '/contact'].map((path, i) => (
+          {['/', '/shop', '/blog', '/contact'].map((path, i) => (
             <li key={i} className="text-[16px] font-medium text-black hover:animate-pulse w-full">
               <NavLink
                 to={path}
@@ -65,19 +66,19 @@ const Header = () => {
 
         {/* Icons */}
         <div className="flex gap-[30px] sm:gap-[45px] items-center sm:static max-sm:fixed max-sm:bottom-0 max-sm:left-0 max-sm:w-full max-sm:justify-evenly max-sm:bg-white max-sm:py-3 max-sm:border-t max-sm:border-gray-300 z-50">
-          <NavLink className={({ isActive }) => `sm:hidden ${isActive ? 'text-yellow-500' : ''}`} to="/">
+          <NavLink className={({ isActive }) => `sm:hidden ${isActive ? 'text-yellow-500' : ''}`}  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} to="/">
             <IoHomeOutline className="w-[24px] h-[24px]" />
           </NavLink>
-          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} to="/user">
-            <FaRegUser className="w-[24px] h-[24px]" />
+          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`}  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} to="/user">
+            <FiUser  className="w-[24px] h-[24px]" />
           </NavLink>
-          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} to="/search">
-            <GoSearch className="w-[24px] h-[24px]" />
+          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} to="/search">
+            <IoSearchOutline className="w-[24px] h-[24px]" />
           </NavLink>
-          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} to="/wishlist">
-            <FaRegHeart className="w-[24px] h-[24px]" />
+          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} to="/wishlist">
+            <IoHeartOutline className="w-[24px] h-[24px]"  />
           </NavLink>
-          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} to="/cart">
+          <NavLink className={({ isActive }) => `${isActive ? 'text-yellow-500' : ''}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}  to="/cart">
             <SlBasket className="w-[24px] h-[24px]" />
           </NavLink>
         </div>
@@ -95,4 +96,4 @@ const Header = () => {
 };
 
 export default memo(Header);
-
+  

@@ -22,6 +22,7 @@ const Products = ({ data, showMoreButton = true, title = "Our Products" }) => {
             key={product.id}
             className="relative bg-[#F4F5F7] group transition-all duration-300 ease-in-out"
           >
+        
             <img
               alt={product.title}
               className="h-[301px] object-contain cursor-pointer p-4 hover:scale-115 max-w-[285px]  transition-all duration-300 mx-auto"
@@ -32,9 +33,10 @@ const Products = ({ data, showMoreButton = true, title = "Our Products" }) => {
             <div className="w-[48px] h-[48px] rounded-full bg-[#E97171] absolute top-[24px] right-[24px] md:group-hover:translate-x-[24px] md:group-hover:opacity-0 duration-300 flex items-center justify-center">
               <p className="text-[16px] text-white font-medium">-50%</p>
             </div>
+
             <div className="w-[48px] h-[70px] top-[84px] right-[12px] absolute md:top-[24px] md:right-[-24px]  md:group-hover:translate-x-[-30px] opacity-100 md:opacity-0 md:group-hover:opacity-100 duration-300">
               <button
-                className="size-[30px] "
+                className="size-[30px]"
                 onClick={() => toggleWishlist(product)}
               >
                 {wishlist.some((item) => item.id === product.id) ? (
