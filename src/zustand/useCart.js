@@ -6,18 +6,21 @@ const saveStorage = (store) => {
 
 export const useCart = create((set) => ({
   cart: JSON.parse(localStorage.getItem("cart")) || [],
-
-  add: (payload) =>
+  toggleCart: (payload) =>
     set((state) => {
       const exist = state.cart.some((item) => item.id === payload.id);
+      let store = [];
       if (exist) {
-        return { cart: state.cart };
+        // remove
+        store = state.cart.filter((item) => item.id !== payload.id);
       } else {
-        let store = [...state.cart, { ...payload, quantity: 1 }];
-        saveStorage(store);
-        return { cart: store };
+        // add
+        store = [...state.cart, payload];
       }
+      localStorage.setItem("cart", JSON.stringify(store));
+      return { cart: store };
     }),
+
   remove: (payload) =>
     set((state) => {
       let store = state.cart.filter((item) => item.id !== payload.id);
