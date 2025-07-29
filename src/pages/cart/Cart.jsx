@@ -8,7 +8,7 @@ const Cart = () => {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-
+  
   return (
     <div className="p-4 mt-20">
       <div className="flex flex-col lg:flex-row gap-8 justify-center">

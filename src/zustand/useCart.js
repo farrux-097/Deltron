@@ -15,7 +15,7 @@ export const useCart = create((set) => ({
         store = state.cart.filter((item) => item.id !== payload.id);
       } else {
         // add
-        store = [...state.cart, payload];
+        store = [...state.cart, {...payload,quantity:1}];
       }
       localStorage.setItem("cart", JSON.stringify(store));
       return { cart: store };
