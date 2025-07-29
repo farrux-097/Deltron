@@ -2,13 +2,13 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "../../zustand/useStore";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { LuShoppingCart } from "react-icons/lu";
+import { MdOutlineShoppingCart, MdShoppingCart } from "react-icons/md";
 import { useCart } from "../../zustand/useCart";
 
 const Products = ({ data, showMoreButton = true, title = "Our Products" }) => {
   const navigate = useNavigate();
   const { toggleWishlist, wishlist } = useStore();
-  const { add } = useCart();
+  const { toggleCart, cart } = useCart();
 
   return (
     <div className="max-w-[1236px] w-full px-4 mx-auto mt-[57px] flex flex-col items-center">
@@ -25,12 +25,12 @@ const Products = ({ data, showMoreButton = true, title = "Our Products" }) => {
         
             <img
               alt={product.title}
-              className="h-[301px] object-contain cursor-pointer p-5 hover:p-0 max-w-[285px] hover:max-w-[325px] transition-all duration-300 mx-auto"
+              className="h-[301px] object-contain cursor-pointer p-4 hover:scale-115 max-w-[285px]  transition-all duration-300 mx-auto"
               onClick={() => navigate(`/product/${product.id}`)}
               src={product.thumbnail}
             />
 
-            <div className="w-[48px] h-[48px] rounded-full bg-[#E97171] absolute top-[24px] right-[24px] md:group-hover:translate-x-[72px] md:group-hover:opacity-0 duration-300 flex items-center justify-center">
+            <div className="w-[48px] h-[48px] rounded-full bg-[#E97171] absolute top-[24px] right-[24px] md:group-hover:translate-x-[24px] md:group-hover:opacity-0 duration-300 flex items-center justify-center">
               <p className="text-[16px] text-white font-medium">-50%</p>
             </div>
 
@@ -45,8 +45,12 @@ const Products = ({ data, showMoreButton = true, title = "Our Products" }) => {
                   <FaRegHeart size="25px" />
                 )}
               </button>
-              <button onClick={() => add(product)}>
-                <LuShoppingCart size="25px" />
+              <button size="30px" onClick={() => toggleCart(product)}>
+                {cart.some((item) => item.id === product.id) ? (
+                  <MdShoppingCart size="28px" />
+                ) : (
+                  <MdOutlineShoppingCart size="28px" />
+                )}
               </button>
             </div>
 
@@ -69,11 +73,15 @@ const Products = ({ data, showMoreButton = true, title = "Our Products" }) => {
           </div>
         ))}
       </div>
-
-      {showMoreButton && (
-        <button className="w-[200px] sm:w-[245px] border p-[12px] text-[12px] mt-[32px] mb-[68px] font-semibold text-[#B88E2F] hover:bg-[#f9f1e7] transition">
+      {showMoreButton ? (
+        <button
+          onClick={() => navigate("shop")}
+          className="w-[200px] sm:w-[245px] border p-[12px] text-[12px] mt-[32px] mb-[68px] font-semibold text-[#B88E2F] hover:bg-[#B88E2F] hover:text-white transition"
+        >
           Show More
         </button>
+      ) : (
+        <></>
       )}
     </div>
   );

@@ -1,13 +1,13 @@
 import React from "react";
 
-const Skeleton = () => {
+const Skeleton = ({countData}) => {
   return (
     <div className="max-w-[1236px] w-full px-4 m-auto mt-[57px] flex flex-col items-center">
       <h1 className="text-[32px] sm:text-[40px] text-[#3A3A3A]">
         Our Products
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-[32px] w-full">
-        {Array(12)
+        {Array(countData)
           .fill()
           .map((_, inx) => (
             <div

@@ -53,7 +53,7 @@ const DetailProduct = () => {
           Home / Shop / <span className="text-black">{product.title}</span>
         </nav>
         <h1 className="text-3xl font-bold">{product.title}</h1>
-        <p className="text-xl text-gray-700 mt-2">Rs. <p>{product.price} USD</p></p>
+        <p className="text-xl text-gray-700 mt-2">Rs. <span>{product.price} USD</span></p>
 
         <div className="flex items-center mt-2 gap-2">
           <span><Stars /></span>

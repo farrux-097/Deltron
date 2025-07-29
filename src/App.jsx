@@ -7,6 +7,7 @@ import Shop from "./pages/shop/Shop";
 import Contact from "./pages/contact/Contact";
 import Wishlist from "./pages/wishlist/Wishlist";
 import Cart from "./pages/cart/Cart";
+import Categories from "./components/categories/Categories";
 import Blog from "./pages/blog/Blog";
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/product/:id" element={<DetailProduct />} />
+          <Route path="/category/:id" element={<Categories />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

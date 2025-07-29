@@ -15,7 +15,7 @@ const Home = () => {
       <Hero />
       <HomeType />
       {error && <p>something went wrong</p>}
-      {loading ? <Skeleton /> : <Products data={data} />}
+      {loading ? <Skeleton countData={8} /> : <Products data={data} />}
     </div>
   );
 };

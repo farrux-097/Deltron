@@ -8,7 +8,7 @@ const Cart = () => {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-
+  
   return (
     <div className="p-4 mt-20">
       <div className="flex flex-col lg:flex-row gap-8 justify-center">
@@ -68,7 +68,7 @@ const Cart = () => {
           ))}
         </div>
 
-        <div className="bg-[#F9F1E7] w-full lg:w-[393px] h-auto py-10 px-6 text-center font-semibold rounded-xl">
+        <div className="bg-[#F9F1E7] w-full lg:w-[393px] md:sticky md:top-[180px] h-[390px] py-10 px-6 text-center font-semibold rounded-xl">
           <h2 className="text-2xl md:text-3xl mb-6">Cart Totals</h2>
           <p className="line-through text-red-700 text-lg">
             Total: {totalPrice.toFixed(2)} USD
