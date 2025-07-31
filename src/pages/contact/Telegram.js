@@ -1,5 +1,5 @@
 const BOT_TOKEN = "7583461546:AAEOzC8MgijaGZNZu2oiwXVqXHpHvNsUybI";
-const CHAT_ID = "-1002764366101";
+const CHAT_ID = "-1002859063317";
 
 
 export const chekOut = async (sms) => {

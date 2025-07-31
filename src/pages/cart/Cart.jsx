@@ -1,6 +1,7 @@
 import React from "react";
 import { useCart } from "../../zustand/useCart";
 import { FaTrash } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const Cart = () => {
   const { cart, increment, decrement, remove } = useCart();
@@ -68,14 +69,16 @@ const Cart = () => {
           ))}
         </div>
 
-        <div className="bg-[#F9F1E7] w-full lg:w-[393px] md:sticky md:top-[180px] h-[390px] py-10 px-6 text-center font-semibold rounded-xl">
+        <div className=" bg-[#F9F1E7] w-full lg:w-[393px] md:sticky md:top-[180px] h-[390px] py-10 px-6 text-center font-semibold rounded-xl">
           <h2 className="text-2xl md:text-3xl mb-6">Cart Totals</h2>
           <p className="line-through text-red-700 text-lg">
             Total: {totalPrice.toFixed(2)} USD
           </p>
           <h1 className="text-xl mt-4">Total Sale: {(totalPrice / 2).toFixed(2)} USD</h1>
           <button className="mt-8 px-8 py-3 text-lg border rounded-xl hover:bg-amber-500 hover:border-white hover:text-white transition">
-            Check Out
+            <NavLink to={'/checkout'}>
+                  Check Out
+            </NavLink>
           </button>
         </div>
       </div>
