@@ -9,6 +9,7 @@ import Wishlist from "./pages/wishlist/Wishlist";
 import Cart from "./pages/cart/Cart";
 import Categories from "./components/categories/Categories";
 import Blog from "./pages/blog/Blog";
+import Checkout from "./pages/checkout/Checkout";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/product/:id" element={<DetailProduct />} />
           <Route path="/category/:id" element={<Categories />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Route>
       </Routes>
     </BrowserRouter>
