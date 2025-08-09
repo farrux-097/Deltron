@@ -139,8 +139,9 @@ const Checkout = () => {
           </div>
         </div>
 
-        <div className="w-full lg:w-[480px] xl:w-[540px] 2xl:w-[608px]">
-          <div className="flex justify-between text-black text-xl font-semibold mb-4">
+        <div className="w-full lg:w-[480px]  xl:w-[540px] 2xl:w-[608px]">
+        <div className="lg:sticky lg:top-[100px]" >
+        <div className="flex justify-between text-black text-xl font-semibold mb-4">
             <span>Product</span>
             <span>Subtotal</span>
           </div>
@@ -169,6 +170,7 @@ const Checkout = () => {
           <button type="submit" className='w-full border border-black rounded-[15px] py-[17px] font-semibold hover:bg-black hover:text-white transition duration-300'>
             Place order
           </button>
+        </div>
         </div>
       </form>
     </div>

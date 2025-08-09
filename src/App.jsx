@@ -1,15 +1,26 @@
-import Home from "./pages/home/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NotFound from "./pages/not-found/NotFound";
-import Layout from "./pages/layout/Layout";
-import DetailProduct from "./pages/detail-product/DetailProduct";
-import Shop from "./pages/shop/Shop";
-import Contact from "./pages/contact/Contact";
-import Wishlist from "./pages/wishlist/Wishlist";
-import Cart from "./pages/cart/Cart";
-import Categories from "./components/categories/Categories";
-import Blog from "./pages/blog/Blog";
-import Checkout from "./pages/checkout/Checkout";
+import { lazy, memo } from "react";
+
+
+const Home = lazy(() => import('./pages/home/Home'))
+const NotFound = lazy(() => import('./pages/not-found/NotFound'))
+const Layout = lazy(() => import('./pages/layout/Layout'))
+const DetailProduct = lazy(() => import('./pages/detail-product/DetailProduct'))
+const Shop = lazy(() => import('./pages/shop/Shop'))
+const Contact = lazy(() => import('./pages/contact/Contact'))
+const Wishlist = lazy(() => import('./pages/wishlist/Wishlist'))
+const Cart = lazy(() => import('./pages/cart/Cart'))
+const Categories = lazy(() => import('./components/categories/Categories'))
+const Blog = lazy(() => import('./pages/blog/Blog'))
+const Checkout = lazy(() => import('./pages/checkout/Checkout'))
+
+
+
+
+
+
+
+
 
 const App = () => {
   return (
@@ -32,4 +43,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default memo(App);
